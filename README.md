@@ -121,6 +121,7 @@ Running the code:
     ![](media/c6a289bc987901bafdda6b94bca4ceac.png)
 
 Output file
+-----------
 
 This txt file includes the out put of the code and to get it just type in your
 bash the following
