@@ -9,6 +9,8 @@ Cursor = db.cursor()
 DBNAME = "news"
 
 """db connection"""
+
+
 def connect_database(query):
     db = psycopg2.connect(database=DBNAME)
     c = db.cursor()
@@ -17,6 +19,7 @@ def connect_database(query):
     return c.fetchall()
 
 # Queries part_where we retrive the data from db
+
 
 q1 = """SELECT title, count(title) AS num FROM articles, log
          WHERE log.path = concat('/article/', articles.slug)
@@ -47,6 +50,8 @@ q3 = """ SELECT * FROM(
 # defining the function
 
 # Function_for_question_1
+
+
 def mostPopularArticle(query):
     answers = connect_database(query)
     print('What are the most popular three articles of all time? ')
@@ -54,6 +59,8 @@ def mostPopularArticle(query):
         print('\t"' + str(answer[0]) + '" - ' + str(answer[1]) + ' views')
 
 # Function for question 2
+
+
 def topAuthor(query):
     answers = connect_database(query)
     print('Who are the most popular article authors of all time? ')
@@ -62,15 +69,17 @@ def topAuthor(query):
 
 
 # Function for question 3
+
+
 def errorsreporting(query):
     answers = connect_database(query)
     print('On which days did more than 1% of requests lead to errors?')
     for answer in answers:
-        print('\t' + '{date:%B %d, %Y} - {error_rate:.1f}% errors'.format(date=answer[0],
-               error_rate=answer[1]))
-      
+        print('\t' + '{date:%B %d, %Y} - {error_rate:.1f}% errors'.format(
+                date=answer[0], error_rate=answer[1]))
 
 # calling the functions
+
 
 mostPopularArticle(q1)
 
